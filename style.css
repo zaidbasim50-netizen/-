@@ -1,0 +1,340 @@
+/* Design System for Aura Beauty */
+:root {
+    --primary-color: #F9F4F0; /* Soft Cream */
+    --accent-color: #D4A373;  /* Rose Gold / Sand */
+    --secondary-accent: #A98467; /* Muted Earth */
+    --bg-color: #FFFFFF;      /* Pure White */
+    --text-main: #333333;     /* Soft Charcoal */
+    --text-muted: #7A7A7A;    /* Warm Grey */
+    --white: #FFFFFF;
+    --dark-bg: #1F1F1F;      /* Dark for Footer/Nav contrast */
+    
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    
+    --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 15px 30px rgba(212, 163, 115, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.7;
+    overflow-x: hidden;
+    direction: rtl;
+}
+
+h1, h2, h3, .brand-logo {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 2rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+nav.scrolled {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(15px);
+    padding: 1.2rem 5%;
+    border-bottom: 1px solid rgba(212, 163, 115, 0.1);
+    box-shadow: var(--shadow-sm);
+}
+
+.brand-logo {
+    font-size: 2rem;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 3rem;
+}
+
+.nav-links a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+    color: var(--accent-color);
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: var(--primary-color);
+    overflow: hidden;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    padding: 0 10%;
+    max-width: 750px;
+    color: var(--text-main);
+}
+
+.hero-content h1 {
+    font-size: 5rem;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    color: var(--text-main);
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 3rem;
+    color: var(--text-muted);
+}
+
+.btn {
+    padding: 1.2rem 3rem;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-block;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    box-shadow: 0 10px 20px rgba(212, 163, 115, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(212, 163, 115, 0.4);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-main);
+    border: 2px solid var(--accent-color);
+    margin-right: 1rem;
+}
+
+.btn-outline:hover {
+    background: var(--accent-color);
+    color: white;
+}
+
+.hero-image {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 55%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    animation: zoomIn 10s infinite alternate;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
+
+.hero-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to left, transparent 20%, var(--primary-color) 90%);
+}
+
+/* Sections */
+section {
+    padding: 10rem 10%;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 6rem;
+}
+
+.section-header h2 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.section-header .line {
+    width: 80px;
+    height: 3px;
+    background: var(--accent-color);
+    margin: 0 auto;
+}
+
+/* Categories */
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+}
+
+.category-card {
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: var(--shadow-sm);
+}
+
+.category-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 1.5s ease;
+}
+
+.category-card:hover .category-img {
+    transform: scale(1.15);
+}
+
+.category-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 3rem;
+    color: white;
+}
+
+/* Product Card Styling */
+.product-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: var(--transition);
+    border: 1px solid #f0f0f0;
+}
+
+.product-card:hover {
+    transform: translateY(-15px);
+    box-shadow: var(--shadow-md);
+}
+
+.product-img {
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+}
+
+.product-info-minimal {
+    padding: 2rem;
+    text-align: center;
+}
+
+.product-info-minimal h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-info-minimal .price {
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+/* About Section */
+.about-teaser {
+    display: flex;
+    align-items: center;
+    gap: 6rem;
+    background: #FFFAF5;
+}
+
+.about-image {
+    flex: 1;
+    height: 600px;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.about-content {
+    flex: 1;
+}
+
+/* Care Section (Skincare Guide) */
+.skincare-tips {
+    background: var(--dark-bg);
+    color: white;
+}
+
+.skincare-tips h2 {
+    color: white;
+}
+
+.tip-card {
+    background: rgba(255,255,255,0.05);
+    padding: 3rem;
+    border-radius: 20px;
+    border: 1px solid rgba(212, 163, 115, 0.2);
+    transition: var(--transition);
+}
+
+.tip-card:hover {
+    background: rgba(255,255,255,0.1);
+    transform: scale(1.02);
+}
+
+/* Footer */
+footer {
+    background: #111;
+    color: #999;
+    padding: 6rem 10%;
+    text-align: center;
+}
+
+footer .brand-logo {
+    color: var(--accent-color);
+    margin-bottom: 3rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .hero-content h1 { font-size: 3.5rem; }
+    .hero-image { width: 100%; opacity: 0.3; }
+    .about-teaser { flex-direction: column; }
+    .hero-image::before { background: linear-gradient(to top, var(--primary-color), transparent); }
+}
