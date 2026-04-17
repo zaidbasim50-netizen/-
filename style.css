@@ -331,10 +331,112 @@ footer .brand-logo {
     margin-bottom: 3rem;
 }
 
-/* Responsive */
+/* Responsive Styles Refined */
 @media (max-width: 992px) {
+    .nav-links { display: none; }
     .hero-content h1 { font-size: 3.5rem; }
-    .hero-image { width: 100%; opacity: 0.3; }
-    .about-teaser { flex-direction: column; }
+    .hero-image { width: 100%; opacity: 0.2; }
+    .about-teaser { flex-direction: column; gap: 3rem; }
     .hero-image::before { background: linear-gradient(to top, var(--primary-color), transparent); }
+}
+
+@media (max-width: 768px) {
+    section { padding: 6rem 5%; }
+    
+    .hero {
+        height: auto;
+        padding: 10rem 5% 5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .hero-content {
+        padding: 0;
+        text-align: center;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+    }
+    
+    .btn {
+        width: 100%;
+        margin: 0 !important;
+    }
+    
+    .hero-image {
+        position: relative;
+        width: 100%;
+        height: 350px;
+        margin-top: 3rem;
+        border-radius: 20px;
+        opacity: 1;
+        order: -1; /* Image on top */
+    }
+    
+    .hero-image::before {
+        display: none;
+    }
+    
+    .categories-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .category-card {
+        height: 350px;
+    }
+    
+    .section-header { margin-bottom: 3rem; }
+    .section-header h2 { font-size: 2.2rem; }
+    
+    .about-image {
+        height: 350px;
+        width: 100%;
+    }
+    
+    .tip-card {
+        padding: 2rem;
+    }
+
+    #contact > div:last-child {
+        text-align: center;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand-logo { font-size: 1.5rem; letter-spacing: 1px; }
+    .hero-content h1 { font-size: 2.2rem; }
+}
+
+/* Product Page Styles Re-organized for Mobile */
+@media (max-width: 768px) {
+    .product-container {
+        padding: 6rem 5% 3rem;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .main-img {
+        height: 400px;
+    }
+    
+    .product-info h1 {
+        font-size: 2.2rem;
+    }
 }
