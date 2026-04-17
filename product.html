@@ -4,14 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تفاصيل المنتج | أورا بيوتي</title>
+    <!-- AR and 3D Libraries -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
         body { font-family: 'Tajawal', sans-serif; }
         h1, h2, h3 { font-family: 'Playfair Display', 'Tajawal', serif; }
-        nav { background: white; padding: 1.5rem 5%; border-bottom: 1px solid #f0f0f0; position: relative; }
-        .product-container { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; padding: 6rem 10%; }
-        @media (max-width: 992px) { .product-container { grid-template-columns: 1fr; } }
+        nav { background: white; padding: 1rem 5%; border-bottom: 1px solid #f0f0f0; position: relative; }
+        .product-container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; padding: 4rem 10%; }
+        .product-image-container { width: 100%; position: sticky; top: 100px; }
+        .main-img { 
+            width: 100%; 
+            height: 600px; 
+            background-size: cover; 
+            background-position: center; 
+            border-radius: 20px; 
+            transition: var(--transition);
+        }
+        @media (max-width: 992px) { 
+            .product-container { grid-template-columns: 1fr; padding: 2rem 5%; }
+            .product-image-container { position: static; }
+            .main-img { height: 40vh; max-height: 400px; }
+        }
     </style>
 </head>
 <body>
@@ -30,8 +45,8 @@
 
     <main class="product-container">
         <!-- Left: Image Gallery -->
-        <div class="product-gallery">
-            <div class="main-img" id="product-image" style="background-image: url('https://images.unsplash.com/photo-1620916566398-39f114352c4e?auto=format&fit=crop&q=80&w=800'); height: 700px; border-radius: 20px;"></div>
+        <div class="product-image-container">
+            <div class="main-img" id="product-image" style="background-image: url('https://images.unsplash.com/photo-1620916566398-39f114352c4e?auto=format&fit=crop&q=80&w=800');"></div>
         </div>
 
         <!-- Right: Product Info -->
@@ -70,6 +85,44 @@
                     <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">يقوي حاجز البشرة الطبيعي.</p>
                 </div>
             </div>
+
+            <!-- AR & Virtual Try-On Section -->
+            <div class="ar-section" style="margin: 3rem 0; padding: 2rem; background: #FFF5F7; border-radius: 20px; border: 1px solid #FFE0E6;">
+                <h3 style="margin-bottom: 1rem; color: #D63384;">✨ تجربة الواقع المعزز (AR)</h3>
+                <p style="font-size: 0.95rem; margin-bottom: 2rem; color: #666;">شوفي المنتج في مساحتك الخاصة أو جربي الألوان على بشرتك فوراً!</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <!-- 3D Visualization Button -->
+                    <button id="view-3d-btn" class="btn btn-outline" style="margin: 0; display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.9rem; border-color: #D63384; color: #D63384;">
+                        <span>📦</span> عرض المنتج 3D
+                    </button>
+                    
+                    <!-- Virtual Mirror Button -->
+                    <button id="try-on-btn" class="btn btn-primary" style="margin: 0; display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.9rem; background: #D63384; border: none;">
+                        <span>🤳</span> تجربة مباشرة (AR)
+                    </button>
+                </div>
+
+                <!-- Hidden Model Viewer -->
+                <model-viewer 
+                    id="product-3d"
+                    src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/WaterBottle/glTF-Binary/WaterBottle.glb" 
+                    ar 
+                    ar-modes="webxr scene-viewer quick-look" 
+                    camera-controls 
+                    poster="https://images.unsplash.com/photo-1620916566398-39f114352c4e?auto=format&fit=crop&q=80&w=300" 
+                    shadow-intensity="1" 
+                    style="width: 100%; height: 0; opacity: 0; transition: all 0.5s;">
+                </model-viewer>
+
+                <!-- Virtual Mirror Container (Camera View) -->
+                <div id="virtual-mirror" style="display: none; margin-top: 2rem; position: relative; border-radius: 15px; overflow: hidden; background: #000;">
+                    <video id="webcam" autoplay playsinline style="width: 100%; height: auto; transform: scaleX(-1);"></video>
+                    <div id="filter-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: color; opacity: 0.4;"></div>
+                    <button id="close-mirror" style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.5); color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">أغلق</button>
+                    <p style="position: absolute; bottom: 10px; width: 100%; text-align: center; color: white; font-size: 0.8rem; background: rgba(214, 51, 132, 0.6); padding: 5px;">يتم الآن محاكاة درجة اللون على بشرتك...</p>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -78,11 +131,11 @@
         <p style="color: #999; margin-bottom: 2rem;">جميع الحقوق محفوظة &copy; 2026 أورا بيوتي Store</p>
     </footer>
 
-    <script src="data.js"></script>
     <script>
         // Simple logic to fill product info from URL params
         const urlParams = new URLSearchParams(window.location.search);
         const productId = urlParams.get('id');
+        let currentProductColor = "#D63384"; // Default lipstick color
         
         if (productId && typeof products !== 'undefined') {
             const product = products.find(p => p.id == productId);
@@ -92,8 +145,58 @@
                 document.getElementById('product-description').innerText = product.description;
                 document.getElementById('product-image').style.backgroundImage = `url('${product.image}')`;
                 document.getElementById('product-category').innerText = product.category === 'skincare' ? 'العناية بالبشرة' : 'المكياج الفاخر';
+                
+                if (product.id == 3) currentProductColor = "#C41E3A"; // Red lipstick
+                if (product.id == 4) currentProductColor = "#D4AF37"; // Golden palette
             }
         }
+
+        // --- AR Logic ---
+        const view3dBtn = document.getElementById('view-3d-btn');
+        const modelViewer = document.getElementById('product-3d');
+        
+        view3dBtn.addEventListener('click', () => {
+            // Expand viewer
+            modelViewer.style.height = "400px";
+            modelViewer.style.opacity = "1";
+            modelViewer.style.marginBottom = "20px";
+            
+            // Scroll into view
+            setTimeout(() => {
+                modelViewer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Check if AR is supported and activate if possible
+                if (modelViewer.canActivateAR) {
+                    modelViewer.activateAR();
+                }
+            }, 300);
+        });
+
+        // --- Virtual Mirror Logic ---
+        const tryOnBtn = document.getElementById('try-on-btn');
+        const mirrorContainer = document.getElementById('virtual-mirror');
+        const video = document.getElementById('webcam');
+        const closeMirror = document.getElementById('close-mirror');
+        const filterOverlay = document.getElementById('filter-overlay');
+
+        tryOnBtn.addEventListener('click', async () => {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+                mirrorContainer.style.display = 'block';
+                filterOverlay.style.backgroundColor = currentProductColor;
+                tryOnBtn.innerText = "المرآة متصلة ✅";
+            } catch (err) {
+                alert("يرجى السماح بالوصول للكاميرا لتجربة المكياج.");
+            }
+        });
+
+        closeMirror.addEventListener('click', () => {
+            const stream = video.srcObject;
+            const tracks = stream.getTracks();
+            tracks.forEach(track => track.stop());
+            mirrorContainer.style.display = 'none';
+            tryOnBtn.innerText = "🤳 تجربة مباشرة (AR)";
+        });
     </script>
 </body>
 </html>
