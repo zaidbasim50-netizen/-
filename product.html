@@ -103,14 +103,16 @@
                     </button>
                 </div>
 
-                <!-- Hidden Model Viewer -->
+                <!-- Optimized Model Viewer -->
                 <model-viewer 
                     id="product-3d"
                     src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/WaterBottle/glTF-Binary/WaterBottle.glb" 
                     ar 
                     ar-modes="webxr scene-viewer quick-look" 
                     camera-controls 
-                    poster="https://images.unsplash.com/photo-1620916566398-39f114352c4e?auto=format&fit=crop&q=80&w=300" 
+                    loading="lazy"
+                    reveal="manual"
+                    poster="https://images.unsplash.com/photo-1620916566398-39f114352c4e?auto=format&fit=crop&q=80&w=400" 
                     shadow-intensity="1" 
                     style="width: 100%; height: 0; opacity: 0; transition: all 0.5s;">
                 </model-viewer>
@@ -160,6 +162,9 @@
             modelViewer.style.height = "400px";
             modelViewer.style.opacity = "1";
             modelViewer.style.marginBottom = "20px";
+            
+            // Start loading and rendering the model only now
+            modelViewer.dismissPoster();
             
             // Scroll into view
             setTimeout(() => {
