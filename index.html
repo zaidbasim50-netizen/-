@@ -25,7 +25,9 @@
             <a href="#contact">اتصل بنا</a>
         </div>
         <div class="nav-extras">
-            <span style="font-size: 1.5rem; cursor: pointer;">🛍️</span>
+            <span id="cart-icon" style="font-size: 1.5rem; cursor: pointer; position: relative;">
+                🛍️ <span id="cart-count" style="position: absolute; top: -10px; right: -10px; background: #D63384; color: white; border-radius: 50%; padding: 2px 6px; font-size: 0.7rem;">0</span>
+            </span>
         </div>
     </nav>
 
@@ -49,25 +51,25 @@
             <div class="line"></div>
         </div>
         <div class="categories-grid">
-            <div class="category-card">
+            <div class="category-card" data-category="skincare" style="cursor: pointer;">
                 <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=800');"></div>
                 <div class="category-overlay">
                     <h3>العناية بالبشرة</h3>
                     <p>حلول متكاملة لبشرة نضرة وصحية</p>
                 </div>
             </div>
-            <div class="category-card">
+            <div class="category-card" data-category="makeup" style="cursor: pointer;">
                 <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=800');"></div>
                 <div class="category-overlay">
                     <h3>المكياج الفاخر</h3>
                     <p>ألوان تعكس شخصيتك المتفردة</p>
                 </div>
             </div>
-            <div class="category-card">
+            <div class="category-card" data-category="all" style="cursor: pointer;">
                 <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1590439471364-192aa70c0b53?auto=format&fit=crop&q=80&w=800');"></div>
                 <div class="category-overlay">
-                    <h3>العطور والزيوت</h3>
-                    <p>روائح تأخذك في رحلة من الأحلام</p>
+                    <h3>عرض الكل</h3>
+                    <p>اكتشفي كامل مجموعتنا الحصرية</p>
                 </div>
             </div>
         </div>
@@ -191,6 +193,26 @@
         <div style="padding: 1.5rem; background: white; border-top: 1px solid #f0f0f0; display: flex; gap: 0.8rem;">
             <input type="text" id="chat-input" placeholder="اكتبي سؤالك هنا..." style="flex: 1; padding: 1rem; border: 1px solid #eee; border-radius: 12px; font-family: inherit; outline: none;">
             <button id="send-chat" style="background: var(--accent-color); border: none; padding: 0 1.5rem; border-radius: 12px; cursor: pointer; color: white;">📧</button>
+        </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div id="cart-drawer">
+        <div class="cart-header">
+            <h3>سلة المشتريات</h3>
+            <span id="close-cart" style="cursor: pointer; font-size: 1.5rem;">✕</span>
+        </div>
+        <div id="cart-items-list" class="cart-items">
+            <!-- Items added will appear here -->
+            <p style="text-align: center; color: #999; margin-top: 2rem;">السلة فارغة حالياً</p>
+        </div>
+        <div class="cart-footer">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; font-weight: bold;">
+                <span>الإجمالي:</span>
+                <span id="cart-total">0$</span>
+            </div>
+            <button class="btn btn-primary" style="width: 100%;" onclick="alert('سوف يتم تحويلك للدفع...')">إتمام الشراء</button>
         </div>
     </div>
 

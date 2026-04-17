@@ -425,6 +425,73 @@ footer .brand-logo {
 }
 
 /* Product Page Styles Re-organized for Mobile */
+/* Cart Drawer Styles */
+#cart-drawer {
+    position: fixed;
+    top: 0;
+    left: -400px;
+    width: 400px;
+    height: 100%;
+    background: white;
+    z-index: 2000;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#cart-drawer.open {
+    left: 0;
+}
+
+.cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1999;
+    display: none;
+    backdrop-filter: blur(5px);
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.cart-footer {
+    border-top: 1px solid #eee;
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.cart-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+}
+
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+@media (max-width: 480px) {
+    #cart-drawer { width: 100%; left: -100%; }
+}
+
 @media (max-width: 768px) {
     .product-container {
         padding: 6rem 5% 3rem;
