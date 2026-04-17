@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أورا بيوتي | سحر الجمال الطبيعي</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: 'Tajawal', var(--font-sans); }
+        h1, h2, h3 { font-family: 'Playfair Display', 'Tajawal', serif; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="brand-logo">AURA BEAUTY</div>
+        <div class="nav-links">
+            <a href="#home">الرئيسية</a>
+            <a href="#categories">التصنيفات</a>
+            <a href="#featured">المنتجات</a>
+            <a href="#about">قصتنا</a>
+            <a href="#contact">اتصل بنا</a>
+        </div>
+        <div class="nav-extras">
+            <span style="font-size: 1.5rem; cursor: pointer;">🛍️</span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>يبرز جمالك الطبيعي بكل ثقة.</h1>
+            <p>اكتشفي مجموعتنا الحصرية من منتجات العناية بالبشرة والمكياج المصممة لتعزيز إشراقتك الطبيعية بمكونات عضوية وفاخرة.</p>
+            <div class="hero-cta">
+                <a href="#categories" class="btn btn-primary">تسوقي الآن</a>
+                <a href="#about" class="btn btn-outline">اكتشفي سرنا</a>
+            </div>
+        </div>
+        <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1596462502278-27bfaf410911?auto=format&fit=crop&q=80&w=1200');"></div>
+    </section>
+
+    <!-- Categories -->
+    <section id="categories">
+        <div class="section-header">
+            <h2>تصنيفاتنا المختارة</h2>
+            <div class="line"></div>
+        </div>
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=800');"></div>
+                <div class="category-overlay">
+                    <h3>العناية بالبشرة</h3>
+                    <p>حلول متكاملة لبشرة نضرة وصحية</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=800');"></div>
+                <div class="category-overlay">
+                    <h3>المكياج الفاخر</h3>
+                    <p>ألوان تعكس شخصيتك المتفردة</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1590439471364-192aa70c0b53?auto=format&fit=crop&q=80&w=800');"></div>
+                <div class="category-overlay">
+                    <h3>العطور والزيوت</h3>
+                    <p>روائح تأخذك في رحلة من الأحلام</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="featured">
+        <div class="section-header">
+            <h2>وصل حديثاً</h2>
+            <div class="line"></div>
+        </div>
+        <div id="new-arrivals-grid" class="categories-grid">
+            <!-- المنتجات ستظهر هنا من data.js -->
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-teaser" id="about">
+        <div class="about-image" style="background-image: url('https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&q=80&w=800'); background-size: cover; background-position: center;"></div>
+        <div class="about-content">
+            <h2 style="font-size: 3rem; margin-bottom: 2rem;">فلسفة أورا بيوتي</h2>
+            <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem;">
+                في أورا، نحن نؤمن أن الجمال الحقيقي يبدأ بالعناية. كل منتج في مجموعتنا هو نتيجة أبحاث دقيقة تدمج بين قوة الطبيعة وأحدث تقنيات العلم لتقديم نتائج مذهلة تليق بك.
+            </p>
+            <ul style="list-style: none; margin-bottom: 2.5rem;">
+                <li style="margin-bottom: 1.2rem;">✨ <strong>مكونات طبيعية:</strong> خالية من البارابين والمواد الكيميائية الضارة.</li>
+                <li style="margin-bottom: 1.2rem;">🐰 <strong>صديقة للبيئة:</strong> لم يتم اختبار منتجاتنا على الحيوانات أبداً.</li>
+                <li style="margin-bottom: 1.2rem;">🌟 <strong>جودة مضمونة:</strong> معايير عالمية في التغليف والتصنيع.</li>
+            </ul>
+            <a href="#" class="btn btn-primary">اكتشفي المزيد عن التزامنا</a>
+        </div>
+    </section>
+
+    <!-- Skincare Guide Teaser -->
+    <section id="care" class="skincare-tips">
+        <div class="section-header">
+            <h2>دليل العناية بالبشرة</h2>
+            <div class="line"></div>
+        </div>
+        <div class="categories-grid">
+            <div class="tip-card">
+                <span style="font-size: 2.5rem;">💧</span>
+                <h3 style="margin: 1.5rem 0; color: var(--accent-color);">الترطيب العميق</h3>
+                <p style="color: rgba(255,255,255,0.7);">لماذا يعتبر الترطيب هو حجر الزاوية لأي روتين عناية ناجح، وكيف تختارين المرطب المناسب.</p>
+                <a href="care.html" style="display: inline-block; margin-top: 1.5rem; color: var(--accent-color); font-weight: bold;">اقرأ الدليل ←</a>
+            </div>
+            <div class="tip-card">
+                <span style="font-size: 2.5rem;">☀️</span>
+                <h3 style="margin: 1.5rem 0; color: var(--accent-color);">الحماية من الشمس</h3>
+                <p style="color: rgba(255,255,255,0.7);">خرافات وحقائق عن واقي الشمس وأهميته في تأخير ظهور علامات الشيخوخة.</p>
+                <a href="care.html" style="display: inline-block; margin-top: 1.5rem; color: var(--accent-color); font-weight: bold;">اقرأ الدليل ←</a>
+            </div>
+            <div class="tip-card">
+                <span style="font-size: 2.5rem;">🌿</span>
+                <h3 style="margin: 1.5rem 0; color: var(--accent-color);">الزيوت الطبيعية</h3>
+                <p style="color: rgba(255,255,255,0.7);">دليل شامل لاستخدام الزيوت في روتينك الليلي للحصول على توهج صباحي ساحر.</p>
+                <a href="care.html" style="display: inline-block; margin-top: 1.5rem; color: var(--accent-color); font-weight: bold;">اقرأ الدليل ←</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="background: white;">
+        <div class="section-header">
+            <h2>انضمي إلى مجتمعنا</h2>
+            <div class="line"></div>
+            <p style="margin-top: 1.5rem; color: var(--text-muted);">هل لديك استفسار عن منتجاتنا؟ خبراء التجميل لدينا هنا لمساعدتك.</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 5rem; max-width: 1100px; margin: 0 auto;">
+            <form style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <input type="text" placeholder="الاسم" style="padding: 1.2rem; border: 1px solid #eee; border-radius: 10px; background: #fafafa;">
+                <input type="email" placeholder="البريد الإلكتروني" style="padding: 1.2rem; border: 1px solid #eee; border-radius: 10px; background: #fafafa;">
+                <textarea placeholder="رسالتك أو استفسارك..." style="padding: 1.2rem; border: 1px solid #eee; border-radius: 10px; background: #fafafa; height: 150px;"></textarea>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">إرسال</button>
+            </form>
+
+            <div style="display: flex; flex-direction: column; gap: 3rem; justify-content: center;">
+                <div>
+                    <h3 style="margin-bottom: 1rem; color: var(--accent-color);">نحن متاحون دائماً</h3>
+                    <p style="color: var(--text-muted);">تواصل معنا عبر واتساب للحصول على استشارة فورية.</p>
+                    <a href="https://wa.me/message/X7GDWZQDINYOL1" target="_blank" style="display: inline-block; margin-top: 1rem; font-weight: bold; color: var(--text-main);">واتساب: +966 50 000 0000</a>
+                </div>
+                <div style="display: flex; gap: 2rem;">
+                    <a href="#" style="color: #E1306C; font-size: 1.5rem;">Instagram</a>
+                    <a href="#" style="color: #1877F2; font-size: 1.5rem;">Facebook</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="brand-logo">AURA BEAUTY</div>
+        <p style="margin-bottom: 2rem;">جميع الحقوق محفوظة &copy; 2026 أورا بيوتي Store</p>
+        <div style="display: flex; justify-content: center; gap: 3rem;">
+            <a href="#">سياسة الخصوصية</a>
+            <a href="#">الشروط والأحكام</a>
+            <a href="#">عن المتجر</a>
+        </div>
+    </footer>
+
+    <!-- AI Chatbot -->
+    <div id="ai-chat-toggle" style="position: fixed; bottom: 30px; left: 30px; width: 65px; height: 65px; background: var(--accent-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow-md); z-index: 2000; font-size: 1.8rem; color: white;">
+        ✨
+    </div>
+
+    <div id="ai-chat-window" style="position: fixed; bottom: 110px; left: 30px; width: 380px; height: 550px; background: white; border-radius: 20px; box-shadow: var(--shadow-md); z-index: 2000; display: none; flex-direction: column; overflow: hidden; border: 1px solid #f0f0f0;">
+        <div style="background: var(--accent-color); color: white; padding: 2rem; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <strong style="display: block; font-size: 1.1rem;">مساعد أورا الذكي</strong>
+                <span style="font-size: 0.8rem; opacity: 0.8;">جاهز لمساعدتك في روتينك اليومي</span>
+            </div>
+            <span id="close-chat" style="cursor: pointer; font-size: 1.5rem;">✕</span>
+        </div>
+        <div id="chat-messages" style="flex: 1; padding: 2rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1.5rem; background: #fafafa;">
+            <div style="background: white; padding: 1rem 1.5rem; border-radius: 15px 15px 15px 0; align-self: flex-start; max-width: 85%; font-size: 0.95rem; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
+                أهلاً بكِ في عالم أورا! أنا مستشاركِ الذكي للتجميل، كيف يمكنني مساعدتك اليوم في اختيار المنتج الأنسب لبشرتكِ؟
+            </div>
+        </div>
+        <div style="padding: 1.5rem; background: white; border-top: 1px solid #f0f0f0; display: flex; gap: 0.8rem;">
+            <input type="text" id="chat-input" placeholder="اكتبي سؤالك هنا..." style="flex: 1; padding: 1rem; border: 1px solid #eee; border-radius: 12px; font-family: inherit; outline: none;">
+            <button id="send-chat" style="background: var(--accent-color); border: none; padding: 0 1.5rem; border-radius: 12px; cursor: pointer; color: white;">📧</button>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل المنتج | أورا بيوتي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: 'Tajawal', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', 'Tajawal', serif; }
+        nav { background: white; padding: 1.5rem 5%; border-bottom: 1px solid #f0f0f0; position: relative; }
+        .product-container { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; padding: 6rem 10%; }
+        @media (max-width: 992px) { .product-container { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <a href="index.html" class="brand-logo">AURA BEAUTY</a>
+        <div class="nav-links">
+            <a href="index.html">الرئيسية</a>
+            <a href="index.html#categories">التصنيفات</a>
+            <a href="index.html#about">قصتنا</a>
+        </div>
+        <div class="nav-extras">
+            <span>🛒</span>
+        </div>
+    </nav>
+
+    <main class="product-container">
+        <!-- Left: Image Gallery -->
+        <div class="product-gallery">
+            <div class="main-img" id="product-image" style="background-image: url('https://images.unsplash.com/photo-1620916566398-39f114352c4e?auto=format&fit=crop&q=80&w=800'); height: 700px; border-radius: 20px;"></div>
+        </div>
+
+        <!-- Right: Product Info -->
+        <div class="product-info">
+            <h1 id="product-name" style="font-size: 3.5rem; margin-bottom: 1rem;">سيروم النضارة الفائق</h1>
+            <p id="product-category" style="color: var(--accent-color); font-weight: 600; text-transform: uppercase; margin-bottom: 1rem;">العناية بالبشرة</p>
+            
+            <div id="product-price" class="price" style="font-size: 2.5rem; color: var(--text-main); margin-bottom: 2rem;">250 ر.س</div>
+
+            <p id="product-description" style="color: var(--text-muted); font-size: 1.2rem; margin-bottom: 3rem; line-height: 1.8;">
+                سيروم غني بفيتامين C وحمض الهيالورونيك لإشراقة فورية وترطيب عميق. يعمل على توحيد لون البشرة وتقليل مظهر الخطوط الدقيقة بفضل تركيبته المتطورة من المواد الطبيعية.
+            </p>
+            
+            <div style="display: flex; gap: 1.5rem; margin-bottom: 4rem;">
+                <button class="btn btn-primary" style="flex: 2; border-radius: 12px;">إضافة للسلة</button>
+                <button class="btn btn-outline" style="flex: 1; border-radius: 12px; margin: 0;">♡</button>
+            </div>
+
+            <!-- More Details -->
+            <h3 style="margin-bottom: 1.5rem; border-bottom: 2px solid var(--accent-color); display: inline-block;">تفاصيل استثنائية</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1rem;">
+                <div style="background: #fafafa; padding: 1.5rem; border-radius: 12px;">
+                    <strong>🌱 تركيبة عضوية</strong>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">مشتق من زيوت نباتية 100%.</p>
+                </div>
+                <div style="background: #fafafa; padding: 1.5rem; border-radius: 12px;">
+                    <strong>✨ ملمس خفيف</strong>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">يمتصه الجلد بسرعة فائقة.</p>
+                </div>
+                <div style="background: #fafafa; padding: 1.5rem; border-radius: 12px;">
+                    <strong>💧 ترطيب 24 ساعة</strong>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">يحافظ على رطوبة بشرتك طوال اليوم.</p>
+                </div>
+                <div style="background: #fafafa; padding: 1.5rem; border-radius: 12px;">
+                    <strong>🛡️ حماية قصوى</strong>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">يقوي حاجز البشرة الطبيعي.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer style="background: #111; color: white; padding: 5rem 10%; text-align: center;">
+        <div class="brand-logo" style="color: var(--accent-color); margin-bottom: 2rem;">AURA BEAUTY</div>
+        <p style="color: #999; margin-bottom: 2rem;">جميع الحقوق محفوظة &copy; 2026 أورا بيوتي Store</p>
+    </footer>
+
+    <script src="data.js"></script>
+    <script>
+        // Simple logic to fill product info from URL params
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+        
+        if (productId && typeof products !== 'undefined') {
+            const product = products.find(p => p.id == productId);
+            if (product) {
+                document.getElementById('product-name').innerText = product.name;
+                document.getElementById('product-price').innerText = product.price;
+                document.getElementById('product-description').innerText = product.description;
+                document.getElementById('product-image').style.backgroundImage = `url('${product.image}')`;
+                document.getElementById('product-category').innerText = product.category === 'skincare' ? 'العناية بالبشرة' : 'المكياج الفاخر';
+            }
+        }
+    </script>
+</body>
+</html>
