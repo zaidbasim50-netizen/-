@@ -54,7 +54,17 @@
             <h1 id="product-name" style="font-size: 3.5rem; margin-bottom: 1rem;">سيروم النضارة الفائق</h1>
             <p id="product-category" style="color: var(--accent-color); font-weight: 600; text-transform: uppercase; margin-bottom: 1rem;">العناية بالبشرة</p>
             
-            <div id="product-price" class="price" style="font-size: 2.5rem; color: var(--text-main); margin-bottom: 2rem;">250 ر.س</div>
+            <div id="product-price" class="price" style="font-size: 2.5rem; color: var(--text-main); margin-bottom: 2rem;">--$ / -- د.ع</div>
+
+            <!-- Quantity Selector -->
+            <div style="margin-bottom: 2rem; display: flex; align-items: center; gap: 1.5rem;">
+                <span style="font-weight: 600;">الكمية:</span>
+                <div style="display: flex; align-items: center; border: 1px solid #eee; border-radius: 10px; overflow: hidden;">
+                    <button id="minus-btn" style="padding: 0.5rem 1rem; background: #fafafa; border: none; cursor: pointer; font-size: 1.2rem;">-</button>
+                    <input type="number" id="quantity-input" value="1" min="1" style="width: 50px; text-align: center; border: none; font-family: inherit; font-size: 1.1rem; background: white;" readonly>
+                    <button id="plus-btn" style="padding: 0.5rem 1rem; background: #fafafa; border: none; cursor: pointer; font-size: 1.2rem;">+</button>
+                </div>
+            </div>
 
             <p id="product-description" style="color: var(--text-muted); font-size: 1.2rem; margin-bottom: 3rem; line-height: 1.8;">
                 سيروم غني بفيتامين C وحمض الهيالورونيك لإشراقة فورية وترطيب عميق. يعمل على توحيد لون البشرة وتقليل مظهر الخطوط الدقيقة بفضل تركيبته المتطورة من المواد الطبيعية.
@@ -138,6 +148,7 @@
         <p style="color: #999; margin-bottom: 2rem;">جميع الحقوق محفوظة &copy; 2026 أورا بيوتي Store</p>
     </footer>
 
+    <script src="data.js"></script>
     <script>
         // Simple logic to fill product info from URL params
         const urlParams = new URLSearchParams(window.location.search);
@@ -148,7 +159,7 @@
             const product = products.find(p => p.id == productId);
             if (product) {
                 document.getElementById('product-name').innerText = product.name;
-                document.getElementById('product-price').innerText = product.price;
+                document.getElementById('product-price').innerText = product.price; // Will display "$ / د.ع"
                 document.getElementById('product-description').innerText = product.description;
                 document.getElementById('product-image').style.backgroundImage = `url('${product.image}')`;
                 document.getElementById('product-category').innerText = product.category === 'skincare' ? 'العناية بالبشرة' : 'المكياج الفاخر';
@@ -186,18 +197,34 @@
             }, 300);
         });
 
+        // --- Quantity Logic ---
+        const plusBtn = document.getElementById('plus-btn');
+        const minusBtn = document.getElementById('minus-btn');
+        const quantityInput = document.getElementById('quantity-input');
+
+        plusBtn.addEventListener('click', () => {
+            quantityInput.value = parseInt(quantityInput.value) + 1;
+        });
+
+        minusBtn.addEventListener('click', () => {
+            if (parseInt(quantityInput.value) > 1) {
+                quantityInput.value = parseInt(quantityInput.value) - 1;
+            }
+        });
+
         // --- Cart & Wishlist Interaction ---
         const cartBtn = document.getElementById('add-to-cart-btn');
         const wishlistBtn = document.getElementById('wishlist-btn');
         const heartIcon = document.getElementById('heart-icon');
 
         cartBtn.addEventListener('click', () => {
-            cartBtn.innerText = "❤️ تم الإضافة!";
+            const qty = quantityInput.value;
+            cartBtn.innerText = `❤️ تم إضافة ${qty} قطع!`;
             cartBtn.style.background = "#28a745";
             setTimeout(() => {
                 cartBtn.innerText = "إضافة للسلة";
                 cartBtn.style.background = "var(--accent-color)";
-                alert("تم إضافة المنتج إلى سلة التسوق بنجاح!");
+                alert(`تم إضافة عدد (${qty}) من المنتج إلى سلة التسوق بنجاح!`);
             }, 800);
         });
 
