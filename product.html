@@ -11,9 +11,16 @@
     <style>
         body { font-family: 'Tajawal', sans-serif; }
         h1, h2, h3 { font-family: 'Playfair Display', 'Tajawal', serif; }
-        nav { background: white; padding: 1rem 5%; border-bottom: 1px solid #f0f0f0; position: relative; }
-        .product-container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; padding: 4rem 10%; }
-        .product-image-container { width: 100%; position: sticky; top: 100px; }
+        nav { background: white; padding: 1rem 5%; border-bottom: 1px solid #f0f0f0; position: fixed; top: 0; width: 100%; z-index: 1000; }
+        .product-container { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 4rem; 
+            padding: 8rem 10% 4rem; 
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        .product-image-container { width: 100%; position: sticky; top: 120px; }
         .main-img { 
             width: 100%; 
             height: 600px; 
@@ -23,9 +30,13 @@
             transition: var(--transition);
         }
         @media (max-width: 992px) { 
-            .product-container { grid-template-columns: 1fr; padding: 2rem 5%; }
+            nav { padding: 1rem 3%; }
+            .product-container { grid-template-columns: 1fr; padding: 6rem 5% 2rem; gap: 2rem; }
             .product-image-container { position: static; }
-            .main-img { height: 40vh; max-height: 400px; }
+            .main-img { height: 350px; border-radius: 15px; }
+            #product-name { font-size: 2.2rem !important; }
+            .price { font-size: 1.8rem !important; }
+            #product-description { font-size: 1rem !important; }
         }
     </style>
 </head>
