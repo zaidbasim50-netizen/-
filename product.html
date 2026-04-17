@@ -61,8 +61,10 @@
             </p>
             
             <div style="display: flex; gap: 1.5rem; margin-bottom: 4rem;">
-                <button class="btn btn-primary" style="flex: 2; border-radius: 12px;">إضافة للسلة</button>
-                <button class="btn btn-outline" style="flex: 1; border-radius: 12px; margin: 0;">♡</button>
+                <button id="add-to-cart-btn" class="btn btn-primary" style="flex: 2; border-radius: 12px;">إضافة للسلة</button>
+                <button id="wishlist-btn" class="btn btn-outline" style="flex: 1; border-radius: 12px; margin: 0;">
+                    <span id="heart-icon">♡</span>
+                </button>
             </div>
 
             <!-- More Details -->
@@ -103,7 +105,10 @@
                     </button>
                 </div>
 
-                <!-- Optimized Model Viewer -->
+                <!-- Optimized Model Viewer with Loading Indicator -->
+                <div id="loading-3d" style="display: none; text-align: center; padding: 1rem; color: #D63384;">
+                    <span class="spinner">⏳</span> جاري تحضير العرض ثلاثي الأبعاد...
+                </div>
                 <model-viewer 
                     id="product-3d"
                     src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/WaterBottle/glTF-Binary/WaterBottle.glb" 
@@ -153,27 +158,57 @@
             }
         }
 
-        // --- AR Logic ---
+        // --- AR Logic Updated ---
         const view3dBtn = document.getElementById('view-3d-btn');
         const modelViewer = document.getElementById('product-3d');
+        const loading3d = document.getElementById('loading-3d');
         
         view3dBtn.addEventListener('click', () => {
+            // Show loading
+            loading3d.style.display = "block";
+            
             // Expand viewer
             modelViewer.style.height = "400px";
             modelViewer.style.opacity = "1";
             modelViewer.style.marginBottom = "20px";
             
-            // Start loading and rendering the model only now
+            // Start loading
             modelViewer.dismissPoster();
             
             // Scroll into view
             setTimeout(() => {
                 modelViewer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                // Check if AR is supported and activate if possible
                 if (modelViewer.canActivateAR) {
                     modelViewer.activateAR();
                 }
+                // Hide loading after a while (when it likely finished)
+                setTimeout(() => { loading3d.style.display = "none"; }, 2000);
             }, 300);
+        });
+
+        // --- Cart & Wishlist Interaction ---
+        const cartBtn = document.getElementById('add-to-cart-btn');
+        const wishlistBtn = document.getElementById('wishlist-btn');
+        const heartIcon = document.getElementById('heart-icon');
+
+        cartBtn.addEventListener('click', () => {
+            cartBtn.innerText = "❤️ تم الإضافة!";
+            cartBtn.style.background = "#28a745";
+            setTimeout(() => {
+                cartBtn.innerText = "إضافة للسلة";
+                cartBtn.style.background = "var(--accent-color)";
+                alert("تم إضافة المنتج إلى سلة التسوق بنجاح!");
+            }, 800);
+        });
+
+        wishlistBtn.addEventListener('click', () => {
+            if (heartIcon.innerText === "♡") {
+                heartIcon.innerText = "❤️";
+                wishlistBtn.style.borderColor = "#D63384";
+            } else {
+                heartIcon.innerText = "♡";
+                wishlistBtn.style.borderColor = "var(--accent-color)";
+            }
         });
 
         // --- Virtual Mirror Logic ---
